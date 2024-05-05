@@ -1,26 +1,30 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Store } from './redux/Store'
+import { Provider } from 'react-redux';
 import FormSection from './components/FormSection'
 import MapSection from './components/MapSection'
 import { useJsApiLoader } from '@react-google-maps/api';
 
-
 function App() {
-  console.log(import.meta.env.VITE_GOOGLE_MAPS_API_KEY)
+ 
   const {isLoaded} = useJsApiLoader({
     googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
+    libraries: ["places"],
   })
-  
+
   if(!isLoaded) {
-    return <h1 style={{textAlign: 'center'}}>Please insert the available Google Map ApiKey to use the service.</h1>;
+    return null;
   }
-  
+
   return (
     <>
-      <div className='wrapper'>
-        <FormSection/>
-        <MapSection/>
-      </div>
+      <Provider store={Store}>
+        <div className='wrapper'>
+          <FormSection/>
+          <MapSection/>
+        </div>
+      </Provider>
     </>
   )
 }
