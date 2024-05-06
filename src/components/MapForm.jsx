@@ -1,5 +1,5 @@
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { Autocomplete } from '@react-google-maps/api';
 import useMap from '../hooks/useMap';
@@ -31,10 +31,6 @@ const MapForm = ({ onFinish, initialValues, submitButtonLoading }) => {
         let destinationAuto = destinationRef.current.getPlace().formatted_address 
         setForm({ ...form, destination: destinationAuto });
     };
-
-    useEffect(() => {
-        console.log(map)
-    }, [map])
 
     return (
         <div className='form-container'>
