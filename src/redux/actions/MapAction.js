@@ -31,15 +31,15 @@ export function getRoute(params, onSuccess = null, onError = null, onFinish = nu
             const result = response.data
             switch (result.status){
                 case "in progress":  
-                    dispatch({type: GET_ROUTE})
+                    dispatch({type: GET_ROUTE, status: result.status})
                     if (onSuccess) onSuccess()
                     return result.status
                 case "success": 
-                    dispatch({type: GET_ROUTE, payload: response.data})
+                    dispatch({type: GET_ROUTE, payload: response.data, status: result.status})
                     if (onSuccess) onSuccess()
                     return result.status
                 case "failure":
-                    dispatch({type: GET_ROUTE, error: result.error })
+                    dispatch({type: GET_ROUTE, error: result.error, status: result.status })
                     if (onError) onError()
                     return result.status
             }

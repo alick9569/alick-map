@@ -22,12 +22,12 @@ const MapForm = ({ onFinish, initialValues, submitButtonLoading }) => {
         setForm(initialValues);
     };
 
-    const handleOriginChange = () => {
+    const handleOriginChange = () => { // Update the form state when user chose the autocomplete location
         let originAuto = originRef.current.getPlace().formatted_address 
         setForm({ ...form, origin: originAuto });
     };
 
-    const handleDestinationChange = () => {
+    const handleDestinationChange = () => { // Update the form state when user chose the autocomplete location
         let destinationAuto = destinationRef.current.getPlace().formatted_address 
         setForm({ ...form, destination: destinationAuto });
     };

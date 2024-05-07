@@ -15,7 +15,7 @@ const MapSection = () => {
 
     const directionsService = new google.maps.DirectionsService()
 
-    async function getDrivingRoute(){
+    async function getDrivingRoute(){ // Create driving path using path state from redux
         const path = map.payload?.path
         const waypoints = path.slice(1, path.length - 1);
         const directions = await directionsService.route({
@@ -47,7 +47,7 @@ const MapSection = () => {
                 }}
             >
                 { map.payload?.path ? map.payload?.path.map(([lat, lng], index) => (
-                    <Marker onLoad={getDrivingRoute} key={index} position={{
+                    <Marker onLoad={getDrivingRoute} key={index} position={{ // Show driving route when markers onload
                         lat: parseFloat(lat), lng: parseFloat(lng) 
                     }}/>
                     )) : null

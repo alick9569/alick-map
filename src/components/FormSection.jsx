@@ -16,8 +16,9 @@ const FormSection = () => {
     const onFinish = async (values) => {
         try {
             const token = await dispatch(getToken(values))
-            let status = await dispatch(getRoute(token))
-            while(status == 'in progress') {
+            let status = await dispatch(getRoute(token)) // Only dispatch when getToken success
+
+            while(status == 'in progress') { // Keep dispatch will status in progress
                 status = await dispatch(getRoute(token))
             }
         } catch (error) {
